@@ -1,0 +1,261 @@
+{
+    "swagger": "2.0",
+    "title" : "Students crud API Documentation",
+    "description" : "PentaValue Task",
+    "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      },
+      "version": "1.0.0",
+      "host": "localhost:4000",
+      "basePath": "/students",
+      "tags": [
+        {
+          "name": "Students",
+          "description": "API for Students Endpoints"
+        }
+      ],
+      "schemes": ["http"],
+      "consumes": ["application/json"],
+      "produces": ["application/json"],
+      "paths" :{
+        "/insert":{
+         "post":{
+           "tags": ["Students"],
+           "summary": "API Endpoint for create Student",
+           "description" : "Create new Student in database",
+           "parameters":[
+             {
+               "name": "username",
+               "description": "username params ",
+               "in": "body",
+               "required": "true",
+               "schema" : {
+                 "$ref" : "#definitions/Student"
+               }
+             },
+             {
+              "name": "firstName",
+              "description": "firstName params ",
+              "in": "body",
+              "required": "true",
+              "schema" : {
+                "$ref" : "#definitions/Student"
+              }
+            },
+            {
+              "name": "lastName",
+              "description": "lastName params ",
+              "in": "body",
+              "required": "true",
+              "schema" : {
+                "$ref" : "#definitions/Student"
+              }
+            },
+            {
+              "name": "email",
+              "description": "email params ",
+              "in": "body",
+              "required": "true",
+              "schema" : {
+                "$ref" : "#definitions/Student"
+              }
+            },
+            {
+              "name": "password",
+              "description": "password params ",
+              "in": "body",
+              "required": "true",
+              "schema" : {
+                "$ref" : "#definitions/Student"
+              }
+            },
+            {
+              "name": "avatar",
+              "description": "avatar params ",
+              "in": "body",
+              "required": "true",
+              "schema" : {
+                "$ref" : "#definitions/Student"
+              }
+            }
+           ],
+           "produces" : ["application/json"],
+           "responses":{
+             "200":{
+               "description" : "New Student Created",
+               "schema": {
+                "$ref" : "#definitions/Student"
+               }
+             }
+           }
+         }
+        },
+        "/list":{
+          "get":{
+            "tags": ["Students"],
+            "summary": "API Endpoint to find all Students",
+            "description" : "Find all Students from the database",
+            "produces" : ["application/json"],
+            "responses":{
+              "200":{
+                "description" : "All the Students",
+                "schema": {
+                 "$ref" : "#definitions/Students"
+                }
+              }
+            }
+          }
+        }
+        ,
+        "/list/{id}":{
+          "parameters":[
+             {
+               "name" : "id",
+                "in": "path",
+                "required": "true",
+                "description": "id of the student",
+                "type": "string"
+
+             }
+          ],
+          "get":{
+            "tags": ["students"],
+            "summary": "API Endpoint to find single student",
+            "description" : "Find one from the database",
+            "produces" : ["application/json"],
+            "responses":{
+              "200":{
+                "description" : "student has found",
+                "schema": {
+                 "$ref" : "#definitions/Student"
+                }
+              }
+            }
+          }
+          
+        },
+        "/delete/{id}":{
+          "parameters":[
+            {
+              "name" : "id",
+               "in": "path",
+               "required": "true",
+               "description": "id of the student",
+               "type": "string"
+
+            }
+         ],
+          "delete":{
+            "tags": ["Students"],
+            "summary": "API Endpoint to delete the Student",
+            "description" : "Delete student from the database",
+            "produces" : ["application/json"],
+            "responses":{
+              "200":{
+                "description" : "student has deleted",
+                "schema": {
+                 "$ref" : "#definitions/Student"
+                }
+              }
+            }
+          }
+        },
+        "/update/{id}":{
+          "put":{
+            "tags": ["Student"],
+            "summary": "API Endpoint for update Student",
+            "description" : "Update the existing Student in database",
+            "parameters":[
+              {
+                "name" : "id",
+                 "in": "path",
+                 "required": "true",
+                 "description": "id of the Student",
+                 "type": "string"
+ 
+             },
+              {
+                "name": "Student",
+                "description": "Student params to update the Student",
+                "in": "body",
+                "schema" : {
+                  "$ref" : "#definitions/UpdateStudent"
+                }
+              }
+            ],
+            "produces" : ["application/json"],
+            "responses":{
+              "200":{
+                "description" : "Student has Updated",
+                "schema": {
+                 "$ref" : "#definitions/Student"
+                }
+              }
+            }
+          }
+        }
+      },
+      "definitions":{
+        "Student":{
+          "required": ["username","firstName","lastName","email","password"],
+          "properties":{
+            "_id": {
+              "type" : "string"
+            },
+            "username": {
+              "type" : "string"
+            },
+            "firstName": {
+              "type" : "string"
+            },
+            "lastName": {
+              "type" : "string"
+            },
+            "email": {
+              "type" : "string"
+            },
+            "password": {
+              "type" : "string"
+            },
+            "avatar": {
+              "type" : "string"
+            }
+          }
+        },
+        "UpdateStudent":{
+          "properties":{
+            "username": {
+              "type" : "string"
+            },
+            "firstName": {
+              "type" : "string"
+            },
+            "lastName": {
+              "type" : "string"
+            },
+            "email": {
+              "type" : "string"
+            },
+            "password": {
+              "type" : "string"
+            }
+          }
+        },
+        "Students":{
+          "properties":{
+            "success": {
+              "type" : "boolean"
+              
+            },
+            "count": {
+              "type" : "integer"
+            },
+            "doc": {
+              "type" : "array",
+              "$ref": "#definitions/Student"
+            }
+          }
+        }
+      }
+}
